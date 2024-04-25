@@ -8,9 +8,24 @@ public class Goods {
 	private int countStock;
 	private int countSold;
 	
+	// 기본 생성자
 	public Goods() {
 		// == Goods.countOfGoods++ (className생략가능)
+//		countOfGoods++;
+		this("", 0, 0, 0);
+	}
+	
+	// 생성자 Overloading ppt27
+	public Goods(String name, int price, int countStock, int countSold) {
+//		this(); // 자기꺼 초기화
+		// className 생략 가능
 		countOfGoods++;
+		
+		// 인스턴스 변수 초기화
+		this.name = name;
+		this.price = price;
+		this.countStock = countStock;
+		this.countSold = countSold;
 	}
 	
 	public String getName() {

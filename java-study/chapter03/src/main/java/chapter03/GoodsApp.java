@@ -3,12 +3,13 @@ package chapter03;
 public class GoodsApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Goods camera = new Goods(); // new로 메모리에 로드, count=1
-		camera.setName("nikon");
-		camera.setPrice(400000);
-		camera.setCountSold(50);
-		camera.setCountStock(30);
+		// 기본 생성자용
+//		Goods camera = new Goods(); // new로 메모리에 로드, count=1
+//		camera.setName("nikon");
+//		camera.setPrice(400000);
+//		camera.setCountSold(50);
+//		camera.setCountStock(30);
+		Goods camera = new Goods("nikon", 400000, 50, 30);
 		
 		// 정보은닉(데이터보호)
 		camera.setPrice(-40000); // set price = 0
