@@ -1,8 +1,14 @@
 package paint;
 
-public class Point {
+public class Point implements Drawable{
 	private int x;
 	private int y;
+	
+//	public Point() {
+//	}
+	public void draw() {
+		show();
+	}
 	
 	public Point(int x, int y) {
 		this.x = x;
