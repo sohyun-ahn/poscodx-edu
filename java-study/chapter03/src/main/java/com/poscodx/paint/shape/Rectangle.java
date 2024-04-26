@@ -1,4 +1,4 @@
-package paint;
+package com.poscodx.paint.shape;
 
 public class Rectangle extends Shape {
 	private int x1, x2, x3, x4;
