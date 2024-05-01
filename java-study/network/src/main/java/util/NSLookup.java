@@ -10,6 +10,7 @@ public class NSLookup {
 		// 과제: ppt 01네트워크소켓의 이해 - p.34
 		
 		Scanner sc = null;
+		
 		try {
 			sc = new Scanner(System.in);
 			String data = "";
@@ -23,13 +24,13 @@ public class NSLookup {
 				
 				InetAddress[] inetAddresses = InetAddress.getAllByName(data);
 				for(InetAddress inetAddress : inetAddresses) {
-					System.out.print(inetAddress.getHostName()+ " : ");
-					System.out.println(inetAddress.getHostAddress());
+					System.out.println(inetAddress.getHostName()+ " : " + inetAddress.getHostAddress());
 				}
 			}
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+			
 		} finally {
 			sc.close();
 		}
