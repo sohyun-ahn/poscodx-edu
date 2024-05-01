@@ -2,18 +2,33 @@ package util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class NSLookup {
 
 	public static void main(String[] args) {
-		// ppt 01네트워크소켓의 이해 - p.34
-		// 
+		// 과제: ppt 01네트워크소켓의 이해 - p.34
+		
 		try {
-			InetAddress[] inetAddresses = InetAddress.getAllByName("www.naver.com");
+			Scanner sc = new Scanner(System.in);
 			
+			String data = "";
+			while(!data.equals("exit")) {
+				System.out.print("> ");
+				data = sc.nextLine();
+				
+				if (data.equals("exit")) {
+					break;
+				}
+				
+				InetAddress[] inetAddresses = InetAddress.getAllByName(data);
+				for(InetAddress inetAddress : inetAddresses) {
+					System.out.print(inetAddress.getHostName()+ " : ");
+					System.out.println(inetAddress.getHostAddress());
+				}
+			}
 			
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
