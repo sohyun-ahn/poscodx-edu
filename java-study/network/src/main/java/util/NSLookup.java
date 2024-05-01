@@ -9,9 +9,9 @@ public class NSLookup {
 	public static void main(String[] args) {
 		// 과제: ppt 01네트워크소켓의 이해 - p.34
 		
+		Scanner sc = null;
 		try {
-			Scanner sc = new Scanner(System.in);
-			
+			sc = new Scanner(System.in);
 			String data = "";
 			while(!data.equals("exit")) {
 				System.out.print("> ");
@@ -30,6 +30,8 @@ public class NSLookup {
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+		} finally {
+			sc.close();
 		}
 
 	}
