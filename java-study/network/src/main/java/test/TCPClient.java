@@ -21,38 +21,38 @@ public class TCPClient {
 			// 2. 서버 연결
 			socket.connect(new InetSocketAddress(SERVER_IP, SERVER_PORT));
 			
-//			// 3. I/O Stream 받아오기
-//			InputStream is = socket.getInputStream();
-//			OutputStream os = socket.getOutputStream();
-//			
-//			// 4. 쓰기
-//			String data = "Hello World";
-//			os.write(data.getBytes("utf-8"));
-//			
-//			// 5. 읽기
-//			byte[] buffer = new byte[256];
-//			int readByteCount = is.read(buffer);
-//			if(readByteCount == -1) {
-//				System.out.println("[client] closed by server");
-//				return;
-//			}
-//			
-//			data = new String(buffer, 0, readByteCount, "utf-8");
-//			System.out.println("[client] received: " + data);
-		} catch (SocketException e) {
-			System.out.println("[client] suddenly closed by server");
+			// 3. I/O Stream 받아오기
+			InputStream is = socket.getInputStream();
+			OutputStream os = socket.getOutputStream();
 			
+			// 4. 쓰기
+			String data = "Hello World";
+			os.write(data.getBytes("utf-8"));
+			
+			// 5. 읽기
+			byte[] buffer = new byte[256];
+			int readByteCount = is.read(buffer);
+			if(readByteCount == -1) {
+				System.out.println("[client] closed by server");
+				return;
+			}
+			
+			data = new String(buffer, 0, readByteCount, "utf-8");
+			System.out.println("[client] received: " + data);
+			
+		} catch (SocketException e) {
+			System.out.println("[client] Socket Exception by server" + e);
 		} catch (IOException e) {
 			System.out.println("[client] error: " + e);
-//		} finally {
-//			try {
-//				if(socket != null && !socket.isClosed()) {					
-//					socket.close();
-//				}
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+		} finally {
+			try {
+				if(socket != null && !socket.isClosed()) {					
+					socket.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

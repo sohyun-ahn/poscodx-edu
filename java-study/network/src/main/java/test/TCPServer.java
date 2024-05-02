@@ -46,10 +46,16 @@ public class TCPServer {
 				 
 				 // 5. 데이터 읽기
 				 while(true) {
+					 System.out.println("try to read");
+					 // write를 해놓고 read할 때, 
+					 // SocketException by clientjava.net.SocketException: Connection reset 예외 발생
+					 
 					 byte[] buffer = new byte[256];
 					 int readByteCount = is.read(buffer); // blocking, -1이면 끊어진 것
+					 System.out.println(readByteCount);
 					 if(readByteCount == -1) {
-						 // client가 정상적으로 종료 (close() 호출)
+						 // 통신이 끊어진 상태
+						 // closed by client (close() 호출)
 						 System.out.println("[server] closed by client");
 						 break;
 					 }
@@ -61,10 +67,23 @@ public class TCPServer {
 					 // 6. 데이터 쓰기
 					 os.write(data.getBytes("utf-8"));
 					 
-					 
+//					 // 종료될때까지 3초 기다리기
+//					 try {
+//							Thread.sleep(2000);
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
+//					 os.write(data.getBytes("utf-8"));
 				 }
+				 
+				 
 			 } catch (SocketException e) {
-				 System.out.println("[server] suddenly closed by client");
+				 // 연결이 끊어졌을때 발생할 수 있다.
+				 // write를 할땐 exception이 없고, read할때 exception이 있다.
+				 //	os가 닫아주든 프로세스가 close 명시적으로 되든 
+				 // windowsOS에서는 닫혔을때 반대편에서 쓰거나 읽으면 발생할 수 있다.
+				 // Abruptly 예기치않은 돌발상황
+				 System.out.println("[server] SocketException by client" + e);
 			 } catch (IOException e) {
 				 System.out.println("[server] error: " + e);
 			 } finally {
@@ -82,6 +101,7 @@ public class TCPServer {
 			System.out.println("[server] error: " + e);
 		} finally {
 			try {
+				
 				// 두번 닫으면 오류일 수 있음 -> close 확인하고 처리할 것 (String socket을 닫았을지(isClosed())도 모르니깐)
 				if(serverSocket != null && !serverSocket.isClosed()) {					
 					serverSocket.close();
