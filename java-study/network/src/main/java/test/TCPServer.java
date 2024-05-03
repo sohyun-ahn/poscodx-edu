@@ -20,6 +20,9 @@ public class TCPServer {
 			// 1. Server Socket 생성
 			 serverSocket = new ServerSocket();
 			 
+			 // 1.1 FIN_WAIT2 -> TIME_WAIT 상태에서도 소켓 포트 할당이 가능하도록 하기위해
+			 serverSocket.setReuseAddress(true);
+			 
 			 // 2. 바인딩(binding)
 			 //    Socket에 InetSocketAddress[InetAddress(IpAddress + Port)]를 바인딩 한다. ()의미 => 객체가 있다는 의미
 			 // "127.0.0.1" => 이렇게 지정안하고, "0.0.0.0" 으로 설정하는 이유 : 특정 호스트 IP를 바인딩 하지 않기 위해서 (특정 IP대역을 받지않고, 다 받겠다는 의미)
@@ -66,14 +69,26 @@ public class TCPServer {
 					 
 					 // 6. 데이터 쓰기
 					 os.write(data.getBytes("utf-8"));
+					 // SO_TIMEOUT 테스트
+					 try {
+						 Thread.sleep(3000);
+					 } catch (InterruptedException e) {
+						 // TODO Auto-generated catch block
+						 e.printStackTrace();
+					 }
 					 
+//					 // socketException 발생시키는 예
+//					 // MacOS를 위해
 //					 // 종료될때까지 3초 기다리기
 //					 try {
+//						 // client가 내려감
 //							Thread.sleep(2000);
 //						} catch (InterruptedException e) {
 //							e.printStackTrace();
 //						}
-//					 os.write(data.getBytes("utf-8"));
+//					 // client가 내려가고 나서 write를 하기 때문에 MacOS에서는 
+//					 // (tcp/ip통신에서 그대로 연결이 남아있음.) 이제 rst를 보내게 되어 예외발생
+//					 os.write(data.getBytes("utf-8")); 
 				 }
 				 
 				 
@@ -82,6 +97,12 @@ public class TCPServer {
 				 // write를 할땐 exception이 없고, read할때 exception이 있다.
 				 //	os가 닫아주든 프로세스가 close 명시적으로 되든 
 				 // windowsOS에서는 닫혔을때 반대편에서 쓰거나 읽으면 발생할 수 있다.
+				 
+				 // windoswOS에서는 닫는 코드를 안보내면 반대편으로 rst(reset)를 보냄.
+				 // socketexception이 발생
+				 // MacOS, Linux, Unix.. 등 에서는 write해야 rst가 보내짐
+				 				 
+				 // closing rst(reset)
 				 // Abruptly 예기치않은 돌발상황
 				 System.out.println("[server] SocketException by client" + e);
 			 } catch (IOException e) {
