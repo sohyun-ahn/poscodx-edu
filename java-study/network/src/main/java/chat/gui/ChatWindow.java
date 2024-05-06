@@ -106,7 +106,7 @@ public class ChatWindow {
 		String message = textField.getText();
 		
 		if(message != null) {
-			printWriter.println( "message:" + message );
+			printWriter.println( "message:" + ChatClientApp.encode(message) );
 		}
 
 		textField.setText(""); // 보내고 나서 비우기
@@ -123,8 +123,6 @@ public class ChatWindow {
 		 System.exit(0);
 	}
 
-	// thread를 외부에 만들지말고 내부에 만들기
-	// 내부에 만들어야하는 이유는 error같은 것들 textarea에 표시하려고
 	private class ChatClientThread extends Thread{
 		
 		private Socket socket;

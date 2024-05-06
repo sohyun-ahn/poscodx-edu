@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 public class ChatServerThread extends Thread {
@@ -41,6 +42,8 @@ public class ChatServerThread extends Thread {
 			while( true ) {
 				//3. 요청 처리 			
 				String request = bufferedReader.readLine();  // blocking
+				String decodedString = null;
+				
 				if( request == null ) {
 					doQuit(printWriter);
 					ChatServer.log( "closed by client [" + remoteHostAddress + " : " + remotePort + "]" );
@@ -51,21 +54,19 @@ public class ChatServerThread extends Thread {
 				// ":" 처리하기 위해
 				// (optional) base64이용해서 하기
 				String[] tokens = request.split( ":" );
-				tokens[0] = tokens[0].toLowerCase(); // 모두 소문자로 변경
-				if(tokens.length > 2) {
-					for(int i=2;i<tokens.length;i++) {
-						tokens[1] += ":" + tokens[i];
-					}
+				
+				if(tokens.length >=2 ) {
+					decodedString = new String(Base64.getDecoder().decode(tokens[1]), "utf-8");
 				}
 				
 				if( "join".equals( tokens[0] ) ) {
-					doJoin( tokens[1], printWriter );
+					doJoin( decodedString, printWriter );
 					
 				} else if( "message".equals( tokens[0] ) ) {
-					if(tokens.length == 2) {						
-						doMessage( tokens[1] );
+					if(decodedString != null) {						
+						doMessage( decodedString );
 					}
-					
+		
 				} else if( "quit".equals( tokens[0] ) ) {	
 					doQuit(printWriter);
 					
