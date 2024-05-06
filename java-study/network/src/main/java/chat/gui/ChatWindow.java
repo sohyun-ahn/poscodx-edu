@@ -104,7 +104,7 @@ public class ChatWindow {
 	
 	private void sendMessage() {
 		String message = textField.getText();
-
+		
 		if(message != null) {
 			printWriter.println( "message:" + message );
 		}
@@ -143,8 +143,6 @@ public class ChatWindow {
 					updateTextArea(message);	
 				
 					if(message == null) {
-						updateTextArea("📢 서버가 종료되었습니다. 3초 후에 창이 닫힙니다.");
-						ChatClient.log( "서버가 종료되었습니다." );
 						break;
 					}
 				}
@@ -163,6 +161,8 @@ public class ChatWindow {
 					e.printStackTrace();
 				} finally {
 					try {
+						updateTextArea("📢 서버가 종료되었습니다. 3초 후에 창이 닫힙니다.");
+						ChatClient.log( "서버가 종료되었습니다." );
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();

@@ -26,7 +26,7 @@ public class ChatServer {
 			String hostAddress = InetAddress.getLocalHost().getHostAddress();
 			
 			serverSocket.bind( new InetSocketAddress( hostAddress, PORT ) );			
-			log( "waiting for connection... " + hostAddress + ":" + PORT );
+			log( "waiting for connection... " + hostAddress + " : " + PORT );
 			
 			// 3. 요청 대기 
 			while( true ) {

@@ -30,7 +30,7 @@ public class ChatServerThread extends Thread {
 			InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
 			String remoteHostAddress = inetRemoteSocketAddress.getAddress().getHostAddress();
 			int remotePort = inetRemoteSocketAddress.getPort();
-			ChatServer.log("connected by client[" + remoteHostAddress + " : " + remotePort + "]");
+			ChatServer.log("connected by client [" + remoteHostAddress + " : " + remotePort + "]");
 			
 			//2. 스트림 얻기
 			bufferedReader = 
@@ -43,7 +43,7 @@ public class ChatServerThread extends Thread {
 				String request = bufferedReader.readLine();  // blocking
 				if( request == null ) {
 					doQuit(printWriter);
-					ChatServer.log( "closed by client[" + remoteHostAddress + " : " + remotePort + "]" );
+					ChatServer.log( "closed by client [" + remoteHostAddress + " : " + remotePort + "]" );
 					break;
 				}
 				
@@ -62,7 +62,9 @@ public class ChatServerThread extends Thread {
 					doJoin( tokens[1], printWriter );
 					
 				} else if( "message".equals( tokens[0] ) ) {
-					doMessage( tokens[1] );
+					if(tokens.length == 2) {						
+						doMessage( tokens[1] );
+					}
 					
 				} else if( "quit".equals( tokens[0] ) ) {	
 					doQuit(printWriter);
@@ -114,7 +116,9 @@ public class ChatServerThread extends Thread {
 		   for( Writer writer : listWriters ) {
 			   PrintWriter printWriter = (PrintWriter) writer;
 			   if(isDoMessage && (printWriter != this.printWriter)) {
-				   printWriter.println( nickname + ": " + data );
+				   printWriter.println( nickname + " : " + data );
+			   } else if(isDoMessage) {
+				   printWriter.println( "나 : " + data );
 			   } else {
 				   printWriter.println( data );
 			   }
