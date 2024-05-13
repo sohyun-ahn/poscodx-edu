@@ -45,3 +45,7 @@
 # Azure Toolkit for IntelliJ plugin
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 **/*/.idea/**/azureSettings.xml
+
+# Table Plus
+**/mariadb-practices/sql연습/Favorite
+**/mariadb-practices/sql연습/History
