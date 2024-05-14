@@ -1,3 +1,13 @@
+-- 1) 집계쿼리: select 절에 통계함수(count, max, min, sum, avg, variance, stddev, ...)
+select avg(salary), sum(salary)
+  from salaries;
+
+-- 2) select 절에 집계함수(그룹함수)가 있는 경우, 어떤 컬럼도 select절에 올 수 없다!!!!
+--    emp_no는 아무 의미가 없다.
+--    오류!!!!! 
+select emp_no, avg(salary)
+  from salaries;
+  
 -- 3)query 순서
 --   1. from: 접근 테이블 확인
 --   2. where: 조건에 맞는 row를 선택(임시 테이블)
