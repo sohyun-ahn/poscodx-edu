@@ -4,12 +4,14 @@
 -- 현재 급여가 많은 직원부터 직원의 사번, 이름, 그리고 연봉을 출력 하시오.
 select e.emp_no, concat(e.first_name, ' ', e.last_name) as name, s.salary
  from employees e join salaries s on e.emp_no = s.emp_no 
- order by salary desc;
+ where s.to_date like '9999%'
+ order by s.salary desc;
 
 -- 문제2.
 -- 전체 사원의 사번, 이름, 현재 직책을 이름 순서로 출력하세요.
 select e.emp_no, concat(e.first_name, ' ', e.last_name) as name, t.title 
  from employees e join titles t on e.emp_no = t.emp_no
+ where t.to_date = '9999-01-01'
  order by name;
 
 -- 문제3.
@@ -22,14 +24,23 @@ select e.emp_no, concat(e.first_name, ' ', e.last_name) as name, d.dept_name
 
 -- 문제4.
 -- 전체 현재 사원의 사번, 이름, 연봉, 직책, 부서를 모두 이름 순서로 출력합니다.
-select e.emp_no, concat(e.first_name, ' ', e.last_name) as name, s.salary, d.dept_name
-  from employees e, departments d, dept_emp de, salaries s
-  where e.emp_no = de.emp_no
-    and d.dept_no = de.dept_no
-    and e.emp_no = s.emp_no
-    and de.to_date = '9999-01-01'
-	and s.to_date = '9999-01-01'
-  order by name;
+select e.emp_no, concat(e.first_name, ' ', e.last_name) as name, s.salary, t.title, d.dept_name
+	from employees e join dept_emp de on (e.emp_no = de.emp_no and de.to_date = '9999-01-01')
+    join departments d on de.dept_no = d.dept_no
+    join titles t on (e.emp_no = t.emp_no and t.to_date = '9999-01-01')
+    join salaries s on (e.emp_no = s.emp_no and s.to_date = '9999-01-01')
+	order by name;
+
+--  from employees e, departments d, dept_emp de, titles t, salaries s
+--   where e.emp_no = de.emp_no
+--     and d.dept_no = de.dept_no
+--     and e.emp_no = s.emp_no
+--     and t.emp_no = e.emp_no
+--     and t.to_date = '9999-01-01'
+--     and de.to_date = '9999-01-01'
+-- 	and s.to_date = '9999-01-01'
+--   order by name;
+
 
 -- 문제5.
 -- ‘Technique Leader’의 직책으로 과거에 근무한 적이 있는 모든 사원의 사번과 이름을 출력하세요.
@@ -72,7 +83,7 @@ select t.title, avg(s.salary)
     and s.to_date = '9999-01-01'
     and t.to_date = '9999-01-01'
   group by t.title
-  having avg(s.salary) >= 50000
+  having avg(s.salary) > 50000
   order by avg(s.salary) desc;
 
 -- 문제9.
