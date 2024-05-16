@@ -11,10 +11,11 @@ public class ConectionTest {
 		try {
 			// 1.JDBC Driver 로딩
 			Class.forName("org.mariadb.jdbc.Driver");
-			
+			String usrID = null;
+			String usrPW = null;
 			// 2. 연결하기
 			String url = "jdbc:mariadb://192.168.64.5:3306/webdb?charset=utf8"; // url의 맨 앞은 프로토콜 + schema + options
-			connection = DriverManager.getConnection(url, "webdb", "webdb");
+			connection = DriverManager.getConnection(url, usrID, usrPW); // usrID, usrPW webdb, webdb 
 			
 			System.out.println("success!");
 		} catch (ClassNotFoundException e) {
