@@ -25,13 +25,22 @@
 		</dependency>
 		-->
 		
-		<!-- org.mariadb.jdbc.Driver 연결을 위해서
-	         근데, mariadb를 지원을 안해서 안씀~ -->
+		<!-- org.mariadb.jdbc.Driver 연결을 위해서 -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<!-- test시에만 사용되는 것 -->
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>5.10.2</version>
+		    <scope>test</scope>
+		</dependency>
+
 		
 	</dependencies>
 </project>
