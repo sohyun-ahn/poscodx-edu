@@ -33,10 +33,13 @@ public class EmaillistDaoTest {
 		vo.setLastName("둘");
 		vo.setFirstName("리");
 		vo.setEmail("dooly@gmail.com"); 
-		
+		// insert나 delete는 개수를 return 하는게 좋음! 
 		
 		// insert query는 성공시 return 1 했었음
 		boolean result = new EmaillistDao().insert(vo);
+		// 여기서 vo가 잘 되었는지 확인하려고 
+		// 주석된 이것이 더 좋은 코드
+		// assertNotNull(vo.getNo());
 		assertTrue(result);
 		
 	
