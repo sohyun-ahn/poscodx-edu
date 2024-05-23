@@ -1,7 +1,7 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="guestbook.dao.GuestbookDao"%>
-<%@page import="guestbook.vo.GuestbookVo"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="guestbook.dao.GuestbookDao"%>
+<%@ page import="guestbook.vo.GuestbookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
