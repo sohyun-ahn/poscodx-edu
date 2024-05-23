@@ -45,7 +45,7 @@
 		</tr>
 		<tr>
 			<td colspan=4>
-			<%= vo.getContent().replaceAll("\n","<br/>") %>
+			<%= vo.getContent().replaceAll(">", "&gt;").replaceAll("<", "&lt;").replaceAll("\n", "<br/>") %>
 			</td>
 		</tr>
 		
