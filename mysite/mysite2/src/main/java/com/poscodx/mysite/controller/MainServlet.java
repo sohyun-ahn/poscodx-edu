@@ -1,5 +1,7 @@
 package com.poscodx.mysite.controller;
 
+import javax.servlet.ServletException;
+
 import com.poscodx.mysite.controller.action.main.MainAction;
 
 public class MainServlet extends ActionServlet {
@@ -9,6 +11,12 @@ public class MainServlet extends ActionServlet {
 	protected Action getAction(String actionName) {
 		// 부모인 ActionServlet에서 이미 구현했기 때문에
 		return new MainAction(); // action만 리턴해주는 팩터리메소드
+	}
+
+	@Override
+	public void init() throws ServletException {
+		String configLocation = this.getServletConfig().getInitParameter("config");
+		System.out.println("MainController.init() called " + configLocation);
 	}
 	
 }
