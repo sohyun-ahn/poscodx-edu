@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.poscodx.mysite.controller.ActionServlet.Action;
 import com.poscodx.mysite.repository.BoardDao;
+import com.poscodx.mysite.repository.BoardPage;
 import com.poscodx.mysite.vo.BoardVo;
 
 public class ListAction implements Action {
@@ -17,6 +18,8 @@ public class ListAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* action이 없을때 들어오는 곳 */
 		Long p = null;
+		Long itemSize = 6L;
+		Long pageSize = 5L;
 
 		if (request.getParameter("p") == null) {
 			p = 1L;
@@ -27,14 +30,20 @@ public class ListAction implements Action {
 		BoardDao boardDao = new BoardDao();
 
 		String kwd = request.getParameter("kwd");
-		List<BoardVo> list = boardDao.find5PerPageByKWD(p, kwd);
+		List<BoardVo> list = boardDao.findPerPageByItemSizeByKWD(p, kwd, itemSize);
 		Long length = boardDao.getLengthByKWD(kwd);
-		
-		if (kwd == null || kwd == "") {
-			 list = boardDao.find5PerPage(p);
-			 length = boardDao.getLength();
-		}
 
+		// keyword가 없으면, find으로 세팅
+		if (kwd == null || kwd == "") {
+			list = boardDao.findPerPageByItemSize(p, itemSize);
+			length = boardDao.getLength();
+		}
+		
+		// page 처리
+		BoardPage boardPage = new BoardPage(p, pageSize, itemSize, length);
+		
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("boardPage", boardPage);
 		request.setAttribute("boardList", list);
 		request.setAttribute("boardListLength", length);
 		request.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(request, response);

@@ -28,26 +28,23 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>	
-						<c:set var="count" value='${boardListLength}' />
-						<c:set var="currentPage" value="${(param.p == null)?1:param.p}" />
-						<c:set var="startNo" value="${count-5*(currentPage-1)}" />
 						<c:set var="paramKWD" value="&kwd=${param.kwd}" />
 						<c:set var="search" value="${param.kwd == null || param.kwd=='' ? '' : paramKWD}" />
 						<c:forEach items='${boardList}' var='vo' varStatus='status'> 
 							<tr>
-								<td>${startNo - status.index}</td>
+								<td>${boardPage.startNo - status.index}</td>
 								<td style="text-align:left; padding-left: ${20*vo.depth}px">
 									<c:if test="${vo.depth > 0}" >
 										<img src="${pageContext.request.contextPath}/assets/images/reply.png">
 									</c:if>
-									<a href='${pageContext.request.contextPath}/board?a=view&no=${vo.no}&p=${currentPage}${search}'>${fn:replace(fn:replace(fn:replace(vo.title, ">", "&gt;"), "<", "&lt;"), newline, "<br>") }</a>
+									<a href='${pageContext.request.contextPath}/board?a=view&no=${vo.no}&p=${boardPage.currentPage}${search}'>${fn:replace(fn:replace(fn:replace(vo.title, ">", "&gt;"), "<", "&lt;"), newline, "<br>") }</a>
 								</td>
 								<td>${vo.userName}</td>
 								<td>${vo.hit}</td>
 								<td>${vo.regDate}</td>
 								<td>
 									<c:if test="${vo.userNo == authUser.no }">
-										<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${currentPage}" class="del">삭제</a>
+										<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${boardPage.currentPage}" class="del">삭제</a>
 									</c:if>
 								</td>
 							</tr>
@@ -55,24 +52,17 @@
 				</table>
 				
 				<!-- pager 추가 -->
-				<c:set var="lastPage" value="${fn : substringBefore((count-1)/5+1, '.')}" />
-				<c:set var="startPage" value="${currentPage-(currentPage-1)%5}"/>
-				<c:set var="prevStartPage" value="${(startPage==1)?1:(startPage-5)}" />
-				<c:set var="nextStartPage" value="${(startPage+5)>lastPage?lastPage:(startPage+5)}" />
-				<c:set var="prevPage" value="${(currentPage==1)?1:currentPage-1 }" />
-				<c:set var="nextPage" value="${(currentPage+1>lastPage)?currentPage:currentPage+1}" />
-				
 				<div class="pager">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/board?p=${prevStartPage}${search}">◀◀</a></li>
-						<li><a href="${pageContext.request.contextPath}/board?p=${prevPage}${search}">◀</a></li>
-						<c:forEach var='i' begin='0' end='4'> 
-							<c:set var="page" value="${startPage+i}" />
+						<li><a href="${pageContext.request.contextPath}/board?p=${boardPage.prevStartPage}${search}">◀◀</a></li>
+						<li><a href="${pageContext.request.contextPath}/board?p=${boardPage.prevPage}${search}">◀</a></li>
+						<c:forEach var='i' begin='0' end='${pageSize-1}'> 
+							<c:set var="page" value="${boardPage.startPage+i}" />
 							<c:choose>
-								<c:when test='${page > lastPage}'>
+								<c:when test='${page > boardPage.lastPage}'>
 									<li>${page}</li>
 								</c:when>
-								<c:when test='${currentPage == page}'>
+								<c:when test='${boardPage.currentPage == page}'>
 									<li class="selected">${page}</li>
 								</c:when>
 								<c:otherwise>
@@ -80,8 +70,8 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-						<li><a href="${pageContext.request.contextPath}/board?p=${nextPage}${search}">▶</a></li>
-						<li><a href="${pageContext.request.contextPath}/board?p=${nextStartPage}${search}">▶▶</a></li>
+						<li><a href="${pageContext.request.contextPath}/board?p=${boardPage.nextPage}${search}">▶</a></li>
+						<li><a href="${pageContext.request.contextPath}/board?p=${boardPage.nextStartPage}${search}">▶▶</a></li>
 					</ul>
 				</div>					
 				<div class="bottom">

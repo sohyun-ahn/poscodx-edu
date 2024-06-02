@@ -50,14 +50,15 @@ public class BoardDao {
 		return result;
 	}
 
-	public List<BoardVo> find5PerPage(Long pageNo) {
+	public List<BoardVo> findPerPageByItemSize(Long pageNo, Long itemSize) {
 		// ListAction
 		List<BoardVo> result = new ArrayList<>();
 		
 		try (Connection conn = DBConnection.get();
 				PreparedStatement pstmt = conn.prepareStatement(
-						"select a.no, a.title, a.content, a.hit, a.reg_date, a.g_no, a.o_no, a.depth, a.user_no, b.name from board a, user b where a.user_no = b.no order by g_no DESC, o_no ASC limit ? , 5");) {
-			pstmt.setLong(1, (pageNo - 1) * 5);
+						"select a.no, a.title, a.content, a.hit, a.reg_date, a.g_no, a.o_no, a.depth, a.user_no, b.name from board a, user b where a.user_no = b.no order by g_no DESC, o_no ASC limit ? , ?");) {
+			pstmt.setLong(1, (pageNo - 1) * itemSize);
+			pstmt.setLong(2, itemSize);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -95,18 +96,19 @@ public class BoardDao {
 		return result;
 	}
 	
-	public List<BoardVo> find5PerPageByKWD(Long pageNo, String kwd) {
+	public List<BoardVo> findPerPageByItemSizeByKWD(Long pageNo, String kwd, Long itemSize) {
 		// ListAction + Search By Keyword
 		List<BoardVo> result = new ArrayList<>();
 
 		try (Connection conn = DBConnection.get();
 				PreparedStatement pstmt = conn.prepareStatement(
-						"select a.no, a.title, a.content, a.hit, a.reg_date, a.g_no, a.o_no, a.depth, a.user_no, b.name from board a, user b where a.user_no = b.no and ( title like ? or content like ?) order by g_no DESC, o_no ASC limit ? , 5");) {
+						"select a.no, a.title, a.content, a.hit, a.reg_date, a.g_no, a.o_no, a.depth, a.user_no, b.name from board a, user b where a.user_no = b.no and ( title like ? or content like ?) order by g_no DESC, o_no ASC limit ? , ?");) {
 			String keyword = kwd != null ? "%" + kwd + "%" : null;
 
 			pstmt.setString(1, keyword);
 			pstmt.setString(2, keyword);
-			pstmt.setLong(3, (pageNo - 1) * 5);
+			pstmt.setLong(3, (pageNo - 1) * itemSize);
+			pstmt.setLong(4, itemSize);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
