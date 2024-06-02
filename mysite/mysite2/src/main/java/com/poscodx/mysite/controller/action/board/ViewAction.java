@@ -41,15 +41,16 @@ public class ViewAction implements Action {
 					hasHitsCookie = true;
 				}
 			}
-			// 쿠키가 없다면 쿠키 생성 후 hit update
-			// hitsOfNo : "true" 로 저장
-			if (!hasHitsCookie) {
-				Cookie hitsCookie = new Cookie(hitsOfNo, "true");
-				hitsCookie.setMaxAge(24 * 60 * 60); // 24시간 설정
-				hitsCookie.setPath("/"); // 모든 URL 범위에서 전송
-				response.addCookie(hitsCookie);
-				boardDao.updateHit(boardVo);
-			}
+		}
+		
+		// 쿠키가 없다면 쿠키 생성 후 hit update
+		// hitsOfNo : "true" 로 저장
+		if (!hasHitsCookie) {
+			Cookie hitsCookie = new Cookie(hitsOfNo, "true");
+			hitsCookie.setMaxAge(24 * 60 * 60); // 24시간 설정
+			hitsCookie.setPath("/"); // 모든 URL 범위에서 전송
+			response.addCookie(hitsCookie);
+			boardDao.updateHit(boardVo);
 		}
 
 		request.setAttribute("boardVo", boardVo);
