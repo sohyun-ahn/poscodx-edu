@@ -21,7 +21,7 @@ public class BoardPage {
 		this.pageSettings();
 	}
 
-	public void pageSettings() {
+	private void pageSettings() {
 		Long firstPage = 1L;
 
 		setCurrentPage(currentPage);
