@@ -1,4 +1,4 @@
-package com.poscodx.mysite.repository;
+package com.poscodx.mysite.vo;
 
 public class BoardPage {
 	private Long pageSize;
