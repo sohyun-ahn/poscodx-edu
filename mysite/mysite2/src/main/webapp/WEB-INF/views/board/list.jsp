@@ -55,10 +55,10 @@
 				</table>
 				
 				<!-- pager 추가 -->
-				<c:set var="lastPage" value="${(count-1)/5+1}" />
+				<c:set var="lastPage" value="${fn : substringBefore((count-1)/5+1, '.')}" />
 				<c:set var="startPage" value="${currentPage-(currentPage-1)%5}"/>
 				<c:set var="prevStartPage" value="${(startPage==1)?1:(startPage-5)}" />
-				<c:set var="nextStartPage" value="${(startPage+5)>lastPage?currentPage:(startPage+5)}" />
+				<c:set var="nextStartPage" value="${(startPage+5)>lastPage?lastPage:(startPage+5)}" />
 				<c:set var="prevPage" value="${(currentPage==1)?1:currentPage-1 }" />
 				<c:set var="nextPage" value="${(currentPage+1>lastPage)?currentPage:currentPage+1}" />
 				
