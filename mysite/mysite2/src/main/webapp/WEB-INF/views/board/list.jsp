@@ -44,7 +44,7 @@
 								<td>${vo.regDate}</td>
 								<td>
 									<c:if test="${vo.userNo == authUser.no }">
-										<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${boardPage.currentPage}" class="del">삭제</a>
+										<a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}&p=${boardPage.currentPage}${search}" class="del">삭제</a>
 									</c:if>
 								</td>
 							</tr>

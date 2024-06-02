@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.poscodx.mysite.controller.ActionServlet.Action;
 import com.poscodx.mysite.repository.BoardDao;
-import com.poscodx.mysite.repository.BoardPage;
+import com.poscodx.mysite.vo.BoardPage;
 import com.poscodx.mysite.vo.BoardVo;
 
 public class ListAction implements Action {
