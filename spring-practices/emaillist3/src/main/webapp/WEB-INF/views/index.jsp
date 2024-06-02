@@ -1,11 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import="java.util.List"%>
-<%@ page import="com.poscodx.emaillist.vo.EmaillistVo" %>
-<%@ page import="com.poscodx.emaillist.repository.EmaillistRepository" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -18,12 +14,12 @@
 		<!-- 메일정보 리스트 -->
 		<table border="1" cellpadding="5" cellspacing="2">
 			<tr>
-				<td align=right>First name: </td>
-				<td>${vo.firstName }</td>
+				<td align=right>Last name: </td>
+				<td>${vo.lastName }</td>
 			</tr>
 			<tr>
-				<td align=right width="110">Last name: </td>
-				<td width="110">${vo.lastName } </td>
+				<td align=right width="110">First name: </td>
+				<td width="110">${vo.firstName } </td>
 			</tr>
 			<tr>
 				<td align=right>Email address: </td>

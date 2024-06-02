@@ -1,7 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,9 +14,8 @@
 		아래 항목을 기입하고 submit 버튼을 클릭하세요.
 	</p>
 	<form action="${pageContext.request.contextPath}/add" method="post"> 
-		<input type='hidden' name='a' value='add'/>
-	    First name: <input type="text" name="fn" value="" ><br>
-	    Last name: <input type="text" name="ln" value=""><br>
+	    Last name: <input type="text" name="lastName" value="" ><br>
+	    First name: <input type="text" name="firstName" value=""><br>
 	    Email address: <input type="text" name="email" value=""><br>
 	    <input type="submit" value="submit">
 	</form>
