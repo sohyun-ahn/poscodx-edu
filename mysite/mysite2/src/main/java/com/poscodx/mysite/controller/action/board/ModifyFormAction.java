@@ -37,7 +37,7 @@ public class ModifyFormAction implements Action {
 
 		BoardVo boardVo = new BoardDao().findByNo(no);
 
-		// 로그인 유저랑 글쓴이가 다르다면,
+		// 로그인 유저랑 글쓴이가 다르다면 돌려보내기
 		if (authUser.getNo() != boardVo.getUserNo()) {
 			response.sendRedirect(request.getContextPath());
 			return;
