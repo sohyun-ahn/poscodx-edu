@@ -39,35 +39,35 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpSession session, UserVo vo, Model model) {
-		// 우리는 아직 인증을 못하니깐 임시처리하
-		// authentication을 필터쪽에서 옛날 방식으로 처리해보려고
-		// HttpSession session 받아와서 처리한다
-		
-		// 먼저, service한테 user를 달라고 한다
-		UserVo authUser = userService.getUser(vo.getEmail(), vo.getPassword()); // service쪽에서도 doget메소드불러와 한다
-		if(authUser == null) {
-			model.addAttribute("email", vo.getEmail());
-			model.addAttribute("result", "fail");
-			
-			return "user/login";
-		}
-		
-		// login 처리 (임시)
-		session.setAttribute("authUser", authUser);
-		
-		return "redirect:/";
-	}
+//	@RequestMapping(value="/login", method=RequestMethod.POST)
+//	public String login(HttpSession session, UserVo vo, Model model) {
+//		// 우리는 아직 인증을 못하니깐 임시처리하
+//		// authentication을 필터쪽에서 옛날 방식으로 처리해보려고
+//		// HttpSession session 받아와서 처리한다
+//		
+//		// 먼저, service한테 user를 달라고 한다
+//		UserVo authUser = userService.getUser(vo.getEmail(), vo.getPassword()); // service쪽에서도 doget메소드불러와 한다
+//		if(authUser == null) {
+//			model.addAttribute("email", vo.getEmail());
+//			model.addAttribute("result", "fail");
+//			
+//			return "user/login";
+//		}
+//		
+//		// login 처리 (임시)
+//		session.setAttribute("authUser", authUser);
+//		
+//		return "redirect:/";
+//	}
 	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("authUser");
-		session.invalidate();
-		
-		return "redirect:/";
-	}
-	
+//	@RequestMapping("/logout")
+//	public String logout(HttpSession session) {
+//		session.removeAttribute("authUser");
+//		session.invalidate();
+//		
+//		return "redirect:/";
+//	}
+//	
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(HttpSession session, Model model) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -96,9 +96,9 @@ public class UserController {
 		
 		vo.setNo(authUser.getNo());
 		userService.update(vo);
-		authUser.setName(vo.getName()); // userName 로그인한 유저로 변경ㄴ
+		authUser.setName(vo.getName()); // userName 로그인한 유저로 변경
 		
-		return "redirect:/user/update";
+		return "redirect:/user/update?result=success";
 	}
 	
 }
