@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.poscodx.container.config.videosystem.mixing.DVDPlayerConfig;
+import com.poscodx.container.config.videosystem.DVDPlayerConfig;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes= {DVDPlayerConfig.class})
