@@ -7,7 +7,7 @@
 		<artifactId>mysite</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>mysite4</artifactId>
+	<artifactId>mysite4_tr</artifactId>
 	<packaging>war</packaging>
 	
 	<properties>
