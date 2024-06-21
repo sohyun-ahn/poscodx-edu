@@ -12,6 +12,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig05 {
+	@Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return new WebSecurityCustomizer() {
             @Override
@@ -25,6 +26,15 @@ public class SecurityConfig05 {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.build();
+    	http
+	     	.formLogin()
+	     	.loginPage("/user/login") // mysite 용 -> defaultLoginPageFilter 사라짐
+	     	.and()
+	     	
+	     	.authorizeHttpRequests(/* Access Control List */)  // 접근제어할 것들만! 인가 권한만 가지고 하면 인증이 이미 포함되어있다. 
+	     	.anyRequest()
+	     	.permitAll();
+	    	
+    	return http.build();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig03 {
+	@Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return new WebSecurityCustomizer() {
             @Override
@@ -25,6 +26,19 @@ public class SecurityConfig03 {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.build();
+        http
+        	.formLogin()
+        	.and()
+        	
+        	.httpBasic()
+        	.and()
+        	
+        	// FilterSecurityInterceptor (deprecated)
+        	.authorizeRequests(/* Access Control List */)  // 권한 필요한 거 다 적기 // 이건 이제 안쓴다
+        	.anyRequest()
+        	.permitAll();
+    	
+    	
+    	return http.build();
     }
 }
