@@ -46,10 +46,12 @@ public class GlobalExceptionHandler {
 			// 4. 사과 페이지(정상종료)
 			if (e instanceof NoHandlerFoundException) {
 				// 404error 처리
-				request.getRequestDispatcher("/WEB-INF/views/errors/404.jsp").forward(request, response);
+				// request.getRequestDispatcher("/WEB-INF/views/errors/404.jsp").forward(request, response);
+				request.getRequestDispatcher("/error/404").forward(request, response);
 			} else {
 				request.setAttribute("error", errors.toString());
-				request.getRequestDispatcher("/WEB-INF/views/errors/exception.jsp").forward(request, response);
+				// request.getRequestDispatcher("/WEB-INF/views/errors/exception.jsp").forward(request, response);
+				request.getRequestDispatcher("/error/500").forward(request, response);
 			}
 
 		}

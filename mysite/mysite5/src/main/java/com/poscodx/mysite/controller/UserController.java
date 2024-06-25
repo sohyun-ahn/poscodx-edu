@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/join", method=RequestMethod.GET)
+	@RequestMapping(value="/login")
 	public String join(@ModelAttribute UserVo vo) {
 		return "user/join";
 	}
