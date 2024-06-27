@@ -7,11 +7,13 @@ import java.io.OutputStream;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@PropertySource("classpath:com/poscodx/mysite/config/web/fileupload.properties")
 public class FileUploadService {
 	@Autowired
 	private Environment env;

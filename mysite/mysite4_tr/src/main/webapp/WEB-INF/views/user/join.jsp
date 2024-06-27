@@ -63,7 +63,7 @@ $(function() {
 					method="post"
 					action="${pageContext.request.contextPath}/user/join">
 					
-					<label class="block-label" for="name">이름</label>
+					<label class="block-label" for="name"><spring:message code="user.join.label.name"/></label>
 					<form:input path="name" />
 					<p style="color:#f00; text-align:left; padding:0">
 						<spring:hasBindErrors name="userVo">
@@ -77,7 +77,7 @@ $(function() {
 					</p>
 					
 					
-					<label class="block-label" for="email">이메일</label>
+					<label class="block-label" for="email"><spring:message code="user.join.label.email"/></label>
 					<form:input path="email" />
 					<input id="btn-check" type="button" value="이메일확인">
 					<img id="img-check" src="${pageContext.request.contextPath}/assets/images/check.png" style="vertical-align:bottom; width:24px; display: none">
@@ -92,15 +92,15 @@ $(function() {
 					</p>					
 					
 					<fieldset>
-						<legend>성별</legend>
+						<legend><spring:message code="user.join.label.gender"/></legend>
 						<form:radiobutton path="gender" value="female" label="여" checked="checked" />
 						<form:radiobutton path="gender" value="male" label="남"/>
 					</fieldset>
 					
 					<fieldset>
-						<legend>약관동의</legend>
+						<legend><spring:message code="user.join.label.terms"/></legend>
 						<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
-						<label>서비스 약관에 동의합니다.</label>
+						<label><spring:message code="user.join.label.terms.message"/></label>
 					</fieldset>
 					
 					<input type="submit" value="가입하기">		
