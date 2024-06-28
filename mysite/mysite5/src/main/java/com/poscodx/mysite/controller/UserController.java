@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/join")
 	public String join(@ModelAttribute UserVo vo) {
 		return "user/join";
 	}
@@ -87,12 +87,12 @@ public class UserController {
 		return "redirect:/user/update";
 	}
 
-	@RequestMapping("/auth")
-	public void auth() {
-	}
-
-	@RequestMapping("/logout")
-	public void logout() {
-	}
-	
+//	@RequestMapping("/auth")
+//	public void auth() {
+//	}
+//
+//	@RequestMapping("/logout")
+//	public void logout() {
+//	}
+//	
 }
