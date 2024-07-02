@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*	 { margin:0; padding:0 }
+body { font-family: "돋움", "맑은 고딕"; font-size: 12px; color: #333; }
+
+.header {
+	width: 650px;
+	height: 100px;
+	margin: 50px auto;
+}
+
+.header .logo, .header .search-box {
+	float: left;
+}
+
+.header .logo {
+	font-size: 0;
+	width: 222px;
+	height: 52px;
+	
+	background: url('/ch03/images/n-splite.png') no-repeat 0 -158px / 442px 428px;
+}
+
+.header .search-box {
+	width: 400px;
+	height: 45px;
+	border: 3px solid #03C75A;
+	margin-left: 20px;	
+	background-color: #fff;
+}
+
+.search-box a, .search-box input, .search-box button {
+	display: block;
+}
+
+.search-box a, .search-box input, .search-box .btn-search {
+	float: right;
+}
+
+.search-box input {
+	outline: none;
+	border: none;
+	width: 260px;
+	padding: 13px 5px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.search-box #keyboard {
+	font-size: 0;
+	width: 20px;
+	height: 12px;
+	margin: 15px 10px 0 0;
+	background: url('/ch03/images/n-splite.png') no-repeat -398px -267px / 442px 428px;
+}
+
+.search-box #dropdown {
+	font-size: 0;
+	width: 10px;
+	height: 5px;
+	margin: 20px 10px 0 0;
+	background: url('/ch03/images/n-splite.png') no-repeat -158px -151px / 442px 428px;
+}
+
+.search-box .btn-search {
+	width: 45px;
+	height: 45px;
+	background-color: #19ce60;
+	cursor: pointer;
+}
+
+.search-box .btn-search button {
+	font-size: 0;
+	border: 0;
+	width: 26px;
+	height: 26px;
+	margin: 10px auto;
+	background: #19ce60 url('/ch03/images/n-splite.png') no-repeat -420px -24px / 442px 428px;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<div class="header">
+		<h1 class="logo">네이버</h1>
+		<div class="search-box">
+			<div class="btn-search">
+				<button>검색</button>
+			</div>
+			<a href="" id="dropdown">드롭다운</a>
+			<a href="" id="keyboard">키보드</a>
+			<input type="text">
+		</div>
+	</div>
+</body>
+</html>
