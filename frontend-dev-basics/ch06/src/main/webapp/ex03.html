@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+setTimeout(function(){
+	location.href = "https://www.poscodx.com"	
+}, 3000);
+
+</script>
+</head>
+<body>
+	<h1>BOM(Browser Object Model)</h1>
+	<h2>3. location 객체</h2>
+	<h3>Refresh Page 하는 방법</h3>
+	
+<!-- 방법1: F5 cached-->
+   <button onclick="location=location;">refresh1</button>
+
+   <!-- 방법2: F5 cached-->
+   <button onclick="location.href=location.href;">refresh2</button>
+
+   <!-- 방법3: F5 cached-->
+   <button onclick="location.assign('');">refresh3</button>
+
+   <!-- 방법4: F5 cached-->
+   <button onclick="location.replace(location);">refresh4</button>
+   
+   <!-- 방법5: Ctrl+ F5 cached-->
+   <button onclick="location.reload();">refresh5</button>
+</body>
+</html>

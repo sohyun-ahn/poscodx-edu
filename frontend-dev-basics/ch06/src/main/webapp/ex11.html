@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+[DOM Event 종류]
+1. 마우스
+	- mouseover, mouseout
+	- mousedown -> mouseup -> click
+	- mousedown -> mouseup -> click ... mousedown -> mouseup -> click -> dblclick
+	
+2. 키보드
+	- keydown -> keyup -> keypress
+
+3. form element
+    - submit
+    
+4. input element
+	- focus, blur, change
+
+5. touch(모바일)
+
+
+[DOM Event 용어 정리]
+1. Event Name
+	load, click, mousedown, ...
+	
+2. Event Attribute
+	- DOM Event Model Level0
+	- onclick, onmouseover, onload
+
+3. Event Listener
+	- DOM Event Model Level2
+	- callback
+
+4. DOM Event Model
+	- DOM HTML Element의 Event Handler를 설정하는 방법에 대한 표준
+	- DOM Event Model Lv.0
+		1) Event Attribute를 사용하는 방식
+		2) inline
+			- 태그에 Event Attribute(예: onclick)에 자바스크립트 코드를 설정하는 방식
+			- <h1 onclick='js codes...'>
+			- 웹표준 위배
+		3) basic
+			- 고전적인 이벤트 처리 방식(기본적인 이벤트 처리 방식)
+			- element.onlick = function() {...}
+			- 문제점은 이벤트 핸들러를 하나만 등록할 수 있다.
+			
+	- DOM Event Model Lv.2
+		1) Observer 패턴을 적용해서 Listener(callback, 이벤트 핸들러)를 등록하는 방식
+		2) 다중 event handler를 등록할 수 있다.
+		3) addEventListener / removeEventListener
+		
+
+ el.onclick = function(event){
+	// event: event가 있을때 정보를 전달받아온 파라미터
+}
+ */
+
+window.onload = function() {
+	document
+		.getElementById("header-2")
+		.onclick = function() {
+		console.log('Event Model Level0 - Basic');
+	}
+	
+	document
+		.getElementById("header-3")
+		.addEventListener('click', function(){
+			console.log('Event Model Level2 - 1');
+		});
+	
+	document
+		.getElementById("header-3")
+		.addEventListener('click', function(){
+			console.log('Event Model Level2 - 2');
+	});
+	
+}
+</script>
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<h2 onclick='console.log()'>5. Event 처리</h2>
+	<h3>Event Model Level0 - Inline</h3>
+	<h3 id='header-2'>Event Model Level0 - Basic</h3>
+	<h3 id='header-3'>Event Model Level2</h3>
+</body>
+</html>

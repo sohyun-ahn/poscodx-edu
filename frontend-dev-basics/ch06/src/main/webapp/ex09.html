@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	setTimeout(function(){
+		var imgElement = document.createElement('img');
+		
+		// getAttribute/setAttribute
+		// 표준 속성에 대해서 읽기/쓰기도 가능하지만
+		// 비표준 속성에 대해서 읽기/쓰기를 하기 위해 사용한다.	
+		imgElement.setAttribute('src', 'https://item.kakaocdn.net/do/c55ed2579e67e3d1e415b28ed83a1f74f43ad912ad8dd55b04db6a64cddaf76d');
+		imgElement.setAttribute('style', 'width:200px');
+		imgElement.setAttribute('alt', "mangom 만세");
+		imgElement.setAttribute('title', "mangom");
+		imgElement.setAttribute('no', 10); // 비표준 속성을 사용할 때 "data-" prefix를 달아 사용한다. data-no
+		
+		console.log(imgElement.no, imgElement.getAttribute('no'), imgElement.alt); // output: undefined '10' 'mangom 만세'
+		
+		document.body.appendChild(imgElement);
+	}, 2000);
+}
+</script>
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<h2>3. HTML Element 속성 조작하기2</h2>
+</body>
+</html>
