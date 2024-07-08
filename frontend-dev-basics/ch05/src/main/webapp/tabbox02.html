@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>리스트를 이용한 메뉴 만들기</title>
+<link rel="stylesheet" type="text/css" href="/ch05/css/tabbox.css"></link>
+<script>
+function onTabClicked(li) {
+	var liSelected = document.querySelector('li.selected');
+	liSelected && (liSelected.className = ''); // 표현식 구문 , false일 경우 뒤에 코드 실행안하지만, true일 경우 뒤에 코드 실행하게 된다. 코드 실행이 toggle 형식으로 가능
+	
+	this.className = "selected";
+}
+
+window.addEventListener('load', function(){
+   var divTabBox= document.getElementsByClassName('tab-box')[0];
+   var ul = divTabBox.childNodes[1];
+   var lis = ul.getElementsByTagName('li');
+
+   Array.prototype.forEach.call(lis, function(li){
+      li.addEventListener('click', onTabClicked);
+   });
+});
+</script>
+</head>
+<body>
+<div class="tab-box">
+	<ul>
+        <li>메뉴1</li>
+        <li>메뉴2</li>
+        <li>메뉴3</li>
+        <li>메뉴4</li>
+        <li>메뉴5</li>
+    </ul>
+    <div>
+    	탭뷰입니다.
+    </div>
+</div>    
+</body>
+</html>

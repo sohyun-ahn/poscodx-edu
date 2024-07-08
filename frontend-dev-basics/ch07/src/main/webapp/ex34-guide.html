@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>sample1</title>
+<link href='image-viewer.css' type='text/css' rel="stylesheet"/>
+<script type="text/javascript" src="jquery/jquery-3.7.1.js"></script>
+<script>
+var images = [ 
+	"국화:Chrysanthemum.jpg", 
+	"사막:Desert.jpg", 
+	"수국:Hydrangeas.jpg", 
+	"해파리:Jellyfish.jpg", 
+	"코알라:Koala.jpg", 
+	"등대:Lighthouse.jpg", 
+	"펭귄:Penguins.jpg", 
+	"툴립:Tulips.jpg" 
+];
+
+var changeImage = function(){
+	var index = Math.floor(Math.random()*images.length);
+	var info = images[index].split(":")[0];
+	var src = images[index].split(":")[1];
+	console.log(info);
+	
+	$('.image-viewer img').attr('src', 'images/'+src);
+	$('.image-viewer img').attr('alt', info);
+}
+
+var slideShow = setInterval(function(){
+	$(".image-viewer img").attr('src', 'images/'+images[i].split(":")[1]);
+	i++;
+}, 500);
+
+
+
+
+$(function(){
+	$('.image-viewer img').attr('src', 'images/' + images[0].split(":")[1]);
+	
+	$('#btn-change').click(function(){
+		changeImage();
+	})
+	
+	$('#btn-slideshow').click(function(){
+		$(this).val('슬라이드쇼 중지');
+		slideShow();
+	})
+})
+
+
+
+</script>
+</head>
+<body>
+	<div class="image-viewer">
+		<div class="buttons">
+			<button id="btn-change">이미지변경</button>
+			<button id="btn-slideshow">슬라이드쇼 시작</button>
+		</div>
+		<div>
+			<img/>
+		</div>
+	</div>
+</body>
+</html>

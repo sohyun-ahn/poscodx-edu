@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="jquery/jquery-simple.js"></script>
+<script>
+$(function(){
+	var $obj = $(".par");
+	$obj.click(function(){
+		console.log("clicked:" + this);
+	});
+
+	setTimeout(function(){
+		$obj.css('color', 'red');
+	}, 2000);
+
+	setTimeout(function(){
+		$("p").css('font-weight', 'bold');
+	}, 4000);
+	
+	$obj.click(function(){
+		// 이벤트 핸들러에서의 this는 jQuery Object가 아닌 HTMLElement 다.
+		console.log("clicked: " + this);
+		
+		// 만약, 핸들러 안에서 이벤트 대상이 되는 this(HTMLElement)의 css나 DOM 
+		
+		$(this).css('color', 'blue');
+	})
+
+});
+</script>
+</head>
+<body>
+	<h1 id="header">Simple jQuery 만들기3</h1>
+	
+	<p class='par'>문장1</p>
+	<p>문장2</p>
+	<p  class='par'>문장3</p>
+	<p>문장4</p>
+</body>
+</html>
+ 
