@@ -1,0 +1,12 @@
+{
+  "name": "ex02",
+  "version": "1.0.0",
+  "main": "app01.js",
+  "scripts": {
+    "start1": "node app01",
+    "start2": "node app02"
+  },
+  "author": "ash",
+  "license": "ISC",
+  "description": ""
+}
