@@ -74,20 +74,5 @@ ImageViewer = {
 		}, {
 			name: "툴립",
 			file: "Tulips.jpg"
-		}, {
-			name: "루피1",
-			file: "luffy1.jpg"
-		}, {
-			name: "루피2",
-			file: "luffy2.gif"
-		}, {
-			name: "루피3",
-			file: "luffy3.jpg"
-		}, {
-			name: "킥스카",
-			file: "kickscar.png"
-		}, {
-			name: "루피",
-			file: "loopy.jpg"
 		}]	
 }
