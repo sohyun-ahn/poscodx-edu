@@ -47,6 +47,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		
 		registry
 			.addInterceptor(loginInterceptor())
 			.addPathPatterns("/user/auth");

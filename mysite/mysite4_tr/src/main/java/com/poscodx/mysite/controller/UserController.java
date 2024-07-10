@@ -56,7 +56,7 @@ public class UserController {
 		return "user/joinsuccess";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="/login")
 	public String login() {
 		return "user/login";
 	}
@@ -78,6 +78,14 @@ public class UserController {
 		
 		authUser.setName(vo.getName());
 		return "redirect:/user/update";
+	}
+	
+	@RequestMapping("/auth")
+	public void auth() {
+	}
+	
+	@RequestMapping("/logout")
+	public void logout() {
 	}
 	
 }
