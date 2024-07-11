@@ -1,0 +1,13 @@
+{
+  "name": "ex02",
+  "version": "1.0.0",
+  "main": "dev-server.js",
+  "scripts": {
+    "start": "npx webpack server --progress",
+    "build": "npx webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

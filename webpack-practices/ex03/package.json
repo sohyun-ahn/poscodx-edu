@@ -1,0 +1,18 @@
+{
+  "name": "ex03",
+  "version": "1.0.0",
+  "description": "ex03: Webpack Development Server",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "npx webpack serve --progress",
+    "build": "npx webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
