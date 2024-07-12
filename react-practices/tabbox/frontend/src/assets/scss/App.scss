@@ -15,12 +15,8 @@ html {
     padding: 32px;
     margin: 60px auto;
 
-    :global(#root) {
+    :global(#App) {
       width: 100%;
-
-      :global(#App) {
-        width: 100%;
-      }
     }
   }
 }
