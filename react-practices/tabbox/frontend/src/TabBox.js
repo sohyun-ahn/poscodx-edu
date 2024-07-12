@@ -1,6 +1,7 @@
 import React from "react";
 import Tabs from "./Tabs";
 import TabView from "./TabView";
+import { tab_box } from "./assets/scss/TabBox.scss";
 
 function TabBox() {
   const tabs = [
@@ -11,9 +12,14 @@ function TabBox() {
     { no: 5, name: "메뉴5", active: false, content: "메뉴5 입니다" },
   ];
   return (
-    <div className="tab-box">
-      <Tabs tabs={tabs} />
-      <TabView tabs={tabs} />
+    <div className={tab_box}>
+      <Tabs
+        tabs={tabs.map((e) => {
+          const { content, ...rest } = e;
+          return rest; // content 빼고 모두 보내기
+        })}
+      />
+      <TabView tabs={tabs.map((e) => e.content)} />
     </div>
   );
 }

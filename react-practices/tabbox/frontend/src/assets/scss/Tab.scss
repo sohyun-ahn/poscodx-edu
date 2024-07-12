@@ -1,0 +1,21 @@
+:global(#App) {
+  .styled_tab {
+    list-style-type: none;
+    float: right;
+    border: 1px solid #999;
+    border-radius: 10px 10px 0 0;
+    width: 100px;
+    height: 22px;
+    margin-right: 2px;
+
+    text-align: center;
+    line-height: 22px;
+
+    background-color: #ccc;
+    cursor: pointer;
+  }
+
+  .styled_active {
+    background-color: #fc6;
+  }
+}
