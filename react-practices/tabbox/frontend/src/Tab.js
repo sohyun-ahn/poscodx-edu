@@ -1,9 +1,14 @@
 import React from "react";
 import { styled_tab, styled_active } from "./assets/scss/Tab.scss";
 
-function Tab({ active, name }) {
+function Tab({ no, active, name, handleSelectedTab }) {
   return (
-    <li className={`${styled_tab} ${active ? styled_active : ""}`}>{name}</li>
+    <li
+      className={`${styled_tab} ${active ? styled_active : ""}`}
+      onClick={() => handleSelectedTab(no)}
+    >
+      {name}
+    </li>
   );
 }
 
