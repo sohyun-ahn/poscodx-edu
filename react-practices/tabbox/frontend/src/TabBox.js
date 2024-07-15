@@ -32,10 +32,6 @@ function TabBox() {
         handleSelectedTab={handleSelectedTab}
         tabs={tabs.map((e) => {
           const { content, ...rest } = e;
-          if (e.no === activeNo) {
-            rest.active = true;
-          }
-
           return rest; // content 빼고 모두 보내기
         })}
       />
