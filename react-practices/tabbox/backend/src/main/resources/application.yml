@@ -26,6 +26,16 @@ spring:
       prefix: classpath:templates/      	  
       suffix : .html
       
+   # datasource
+   datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://192.168.64.5:3306/webdb?charset=utf8
+      username: webdb
+      password: webdb
+      hikari:
+         minimum-idle: 10
+         maximum-pool-size: 20
+
 
 server:
    error:
@@ -38,7 +48,8 @@ server:
       encoding:
          charset: utf-8
          enabled: true
-
+         
+   
 
 
 
