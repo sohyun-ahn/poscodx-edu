@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Search_bar } from "./assets/scss/Searchbar.scss";
 
-function Searchbar({ emaillist, setIsSearching, setFilteredEmaillist }) {
+function Searchbar({ fetchEmails }) {
   const [searchItem, setSearchItem] = useState("");
 
-  useEffect(() => {
-    if (searchItem != "") {
-      setFilteredEmaillist(
-        emaillist.filter(
-          (e) =>
-            e.firstName.includes(searchItem) ||
-            e.lastName.includes(searchItem) ||
-            e.email.includes(searchItem)
-        )
-      );
-      setIsSearching(true);
-    } else {
-      setIsSearching(false);
-    }
-  }, [searchItem]);
-
   const handleChange = (e) => {
-    setSearchItem(e.target.value);
+    fetchEmails(e.target.value);
   };
 
   return (

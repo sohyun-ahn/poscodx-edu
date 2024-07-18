@@ -32,18 +32,21 @@
       font-weight: bold;
       text-align: center;
       line-height: 8px;
-      padding-top: 2px;
-    }
+      padding: 3px 2px;
 
-    a:before {
-      content: "X";
-    }
+      &:before {
+        content: "X";
+      }
 
-    a:hover,
-    a:visited,
-    a:active {
-      text-decoration: none;
-      color: #fff;
+      &:visited,
+      &:active {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      &:hover {
+        background-color: #cfcfcf;
+      }
     }
   }
 }
