@@ -5,6 +5,7 @@ function Searchbar({ fetchEmails }) {
   const [searchItem, setSearchItem] = useState("");
 
   const handleChange = (e) => {
+    setSearchItem(e.target.value);
     fetchEmails(e.target.value);
   };
 

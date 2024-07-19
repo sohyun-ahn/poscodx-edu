@@ -58,7 +58,6 @@ function Emaillist() {
 
       // 완벽히 success 한 경우,
       setEmaillist(json.data);
-      console.log(json.data);
     } catch (err) {
       console.error(err);
     }
