@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kanbanboard">
+	
+	<!-- Card [R] -->
+	<select id="findAllCards" resultType="cardvo">
+		<![CDATA[
+		  select no, title, description, status
+		    from card 
+		]]>
+	</select>
+
+	<!-- Task [C] -->
+	<insert id="insert" parameterType="taskvo">
+		<![CDATA[
+		insert
+		  into task
+		values (null, #{name}, #{done}, #{cardNo})
+		]]>
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+			<![CDATA[
+			select last_insert_id()
+			]]>		
+		</selectKey>
+	</insert>
+	
+	<!-- Task [R] -->
+	<select id="findAllTasks" resultType="taskvo" parameterType="long">
+		<![CDATA[
+		select no, name, done, card_no
+		  from task
+		 where card_no = #{cardNo}
+		 order by no;
+		]]>
+	</select>
+	
+	<!-- Task [U] -->
+	<update id="updateByNo" parameterType="taskvo">
+		<![CDATA[
+		update task
+		   set done = #{done}
+		 where no = #{no}
+		   and card_no = #{cardNo}
+		]]>
+	</update>
+	
+	<!-- Task [D] -->
+	<delete id="deleteByNo" parameterType="map">
+		<![CDATA[
+		delete
+		  from task 
+		 where no = #{no}
+		   and card_no = #{cardNo}
+		 ]]>
+	</delete>
+	
+</mapper>

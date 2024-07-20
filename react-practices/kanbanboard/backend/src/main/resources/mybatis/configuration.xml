@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+    <!-- UnderScore code를 자동으로 CamelCase로 바꿔주는 설정 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    	
+	<typeAliases>
+		<typeAlias type="com.poscodx.kanbanboard.vo.CardVo" alias="cardvo" />
+		<typeAlias type="com.poscodx.kanbanboard.vo.TaskVo" alias="taskvo" />
+    </typeAliases>	
+	
+	<mappers>
+		<mapper resource="mybatis/mappers/kanbanboard.xml" />
+	</mappers>
+</configuration>
