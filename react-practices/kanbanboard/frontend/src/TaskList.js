@@ -126,6 +126,11 @@ function TaskList({ cardNo }) {
   }, []);
 
   const handleEnterKeyDown = (e) => {
+    if (e.nativeEvent.isComposing) {
+      // 한글 입력시 오류 해결: 한글자씩 추가 되는 것을 막음
+      return;
+    }
+
     if (e.key === "Enter") {
       addTask(e.target.value);
       e.target.value = "";
