@@ -1,0 +1,145 @@
+# spring configuration
+spring:
+  application:
+    name: ex02
+
+
+---
+# common configuration
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.66.4:3306/jpadb?charset=utf8
+    username: jpadb
+    password: jpadb
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+  level:
+    root: INFO
+
+
+---
+# test01 configuration
+spring:
+  config:
+    activate:
+      on-profile: test01
+
+  jpa:
+    database: MySQL
+
+
+
+---
+# test02 configuration
+spring:
+  config:
+    activate:
+      on-profile: test02
+
+  jpa:
+    # database: MySQL
+    database-platform: org.hibernate.dialect.MariaDB106Dialect
+
+
+
+---
+# test03 configuration
+spring:
+  config:
+    activate:
+      on-profile: test03
+
+  jpa:
+    # database: MySQL
+    # database-platform: org.hibernate.dialect.MariaDB106Dialect
+    generate-ddl: true
+
+
+
+---
+# test04 configuration
+spring:
+  config:
+    activate:
+      on-profile: test04
+
+  jpa:
+    # database: MySQL
+    # database-platform: org.hibernate.dialect.MariaDB106Dialect
+    # jpa common 설정들
+    generate-ddl: true
+    show-sql: true
+
+
+---
+# test05 configuration
+# java로 직접설정하고 싶을때 사용
+spring:
+  config:
+    activate:
+      on-profile: test05
+
+  jpa:
+    properties:
+      hibernate: # 벤더한테 직접들어가는 설정
+        dialect: org.hibernate.dialect.MariaDB106Dialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        hbm2ddl:
+          auto: create
+
+
+
+---
+# test06 configuration
+spring:
+  config:
+    activate:
+      on-profile: test06
+
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB106Dialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        hbm2ddl:
+          auto: create
+
+
+
+---
+# test07 configuration
+spring:
+  config:
+    activate:
+      on-profile: test07
+
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: false # true가 기본, 연기하지마라. 실패하면 뒤로 안되게
+    hibernate:
+      # ddl-auto: create
+      # use-new-id-generator-mappings: false
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy # naming을 엔티티에 있는 이름과 똑같이 쓰겠냐?라는 의미
+    properties: # hibernate만의 설정
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB106Dialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        hbm2ddl:
+          auto: create # create, create-drop(drop시키고 create), update, validate도 된다.
+
+
