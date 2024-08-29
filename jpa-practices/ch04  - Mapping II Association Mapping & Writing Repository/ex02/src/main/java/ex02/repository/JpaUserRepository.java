@@ -9,16 +9,16 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface JpaUserRepository extends JpaRepository<User, Long> {
+public interface JpaUserRepository extends JpaRepository<User, Integer> {
 
     public User findByEmailAndPassword(String email, String password);
 
     @Query("select new ex02.domain.dto.UserDto(u.id, u.name) from User u where u.id=:id")
-    public UserDto findById2(@Param("id") Integer id);
+    public UserDto findById02(@Param("id") Integer id);
 
     @Modifying
     @Query("update User u set u.name=:name, u.email=:email, u.password=:password, u.gender=:gender, u.role=:role where u.id=:id")
-    public void update(
+    public Integer update(
             @Param("id") Integer id,
             @Param("name") String name,
             @Param("email") String email,

@@ -6,6 +6,6 @@ import ex02.domain.Board;
 
 import java.util.List;
 
-public interface JpaBoardRepository extends JpaRepository<Board, Long>, QuerydslBoardRepository {
+public interface JpaBoardRepository extends JpaRepository<Board, Integer>, QuerydslBoardRepository {
     List<Board> findAllByOrderByRegDateDesc();
 }

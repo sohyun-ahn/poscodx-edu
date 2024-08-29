@@ -12,8 +12,8 @@ public interface QuerydslBoardRepository {
     public List<Board> findAllByOrderByRegDateDesc02();
     public List<BoardDto> findAllByOrderByRegDateDesc03();
     public List<BoardDto> findAllByOrderByRegDateDesc03(Integer page, Integer size);
-    public List<BoardDto> findAll03(Pageable pageable);
-    public List<BoardDto> findAll03(String keyword, Pageable pageable);
+    public List<BoardDto> findAll02(Pageable pageable);
+    public List<BoardDto> findAll02(String keyword, Pageable pageable);
 
     public Long update(Board board);
 

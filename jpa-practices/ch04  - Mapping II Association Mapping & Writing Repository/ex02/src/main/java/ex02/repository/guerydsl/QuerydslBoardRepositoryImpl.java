@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.List;
 
 import static ex02.domain.QBoard.board;
-
+// jpa 기본 repository가 맘에 안들기 때문에 이것을 만들게 된다~!
 public class QuerydslBoardRepositoryImpl extends QuerydslRepositorySupport implements QuerydslBoardRepository {
 
     private JPAQueryFactory queryFactory;
@@ -67,7 +67,7 @@ public class QuerydslBoardRepositoryImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<BoardDto> findAll03(Pageable pageable) {
+    public List<BoardDto> findAll02(Pageable pageable) {
         JPAQuery<BoardDto> query = queryFactory
                 .select(Projections.fields(BoardDto.class, board.id, board.hit, board.title, board.content, board.regDate, board.user().name.as("userName")))
                 .from(board)
@@ -87,7 +87,7 @@ public class QuerydslBoardRepositoryImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<BoardDto> findAll03(String keyword, Pageable pageable) {
+    public List<BoardDto> findAll02(String keyword, Pageable pageable) {
         JPAQuery<BoardDto> query = queryFactory
                 .select(Projections.fields(BoardDto.class, board.id, board.hit, board.title, board.content, board.regDate, board.user().name.as("userName")))
                 .from(board)
